@@ -126,42 +126,6 @@
     <input id="f-phone" type="tel" placeholder="123-123-1234" oninput="render()">
   </div>
 
-  <div class="controls-section">
-    <div class="controls-heading">Fine adjustments</div>
-    <div class="info">Icons and text auto-align. Sliders only change spacing &amp; the bracket size.</div>
-
-    <div class="row">
-      <label>Name letter-spacing</label>
-      <input type="range" id="f-ntrack" min="-0.05" max="0.15" step="0.005" value="0" oninput="render()">
-      <span class="val" id="ntrack-val">0.000em</span>
-    </div>
-    <div class="row">
-      <label>Title letter-spacing</label>
-      <input type="range" id="f-track" min="0" max="0.2" step="0.005" value="0.08" oninput="render()">
-      <span class="val" id="track-val">0.080em</span>
-    </div>
-    <div class="row">
-      <label>Bracket vertical length</label>
-      <input type="range" id="f-bbot" min="30" max="100" step="1" value="60" oninput="render()">
-      <span class="val" id="bbot-val">60px</span>
-    </div>
-    <div class="row">
-      <label>Bracket horizontal length</label>
-      <input type="range" id="f-hlen" min="4" max="40" step="1" value="12" oninput="render()">
-      <span class="val" id="hlen-val">12px</span>
-    </div>
-    <div class="row">
-      <label>Gap between bracket &amp; text</label>
-      <input type="range" id="f-gap" min="4" max="40" step="1" value="14" oninput="render()">
-      <span class="val" id="gap-val">14px</span>
-    </div>
-    <div class="row">
-      <label>Title to email gap</label>
-      <input type="range" id="f-cy" min="0" max="40" step="1" value="14" oninput="render()">
-      <span class="val" id="cy-val">14px</span>
-    </div>
-  </div>
-
   <button class="btn" id="copy-btn" onclick="doCopy()">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
     Copy Signature
@@ -291,29 +255,28 @@ function buildSig(name, title, email, phone, tr, ntr, gp, cyv, col1W, bracketEl,
 </table>`;
 }
 
+// Locked-in design values (no longer user-adjustable)
+const LOCKED = {
+  tr:  0.080,   // Title letter-spacing
+  ntr: 0.080,   // Name letter-spacing
+  bb:  74,      // Bracket vertical length
+  hl:  12,      // Bracket horizontal length
+  gp:  14,      // Gap between bracket and text
+  cy:  14,      // Gap between title and email row
+};
+
 function readInputs() {
   return {
     name:  document.getElementById('f-name').value  || 'First Last',
     title: document.getElementById('f-title').value || 'Job Title',
     email: document.getElementById('f-email').value || 'Name@cloud-team.com',
     phone: document.getElementById('f-phone').value || '123-123-1234',
-    tr: parseFloat(document.getElementById('f-track').value),
-    ntr: parseFloat(document.getElementById('f-ntrack').value),
-    bb: parseInt(document.getElementById('f-bbot').value),
-    hl: parseInt(document.getElementById('f-hlen').value),
-    gp: parseInt(document.getElementById('f-gap').value),
-    cy: parseInt(document.getElementById('f-cy').value),
+    ...LOCKED,
   };
 }
 
 function render() {
   const v = readInputs();
-  document.getElementById('track-val').textContent  = v.tr.toFixed(3) + 'em';
-  document.getElementById('ntrack-val').textContent = v.ntr.toFixed(3) + 'em';
-  document.getElementById('bbot-val').textContent   = v.bb + 'px';
-  document.getElementById('hlen-val').textContent   = v.hl + 'px';
-  document.getElementById('gap-val').textContent    = v.gp + 'px';
-  document.getElementById('cy-val').textContent     = v.cy + 'px';
 
   // Live preview uses SVG (fast, sharp at all sizes)
   const { svg: bracket, width: col1W } = getBracketSvg(v.bb, v.hl);
