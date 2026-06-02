@@ -131,6 +131,15 @@
     <div class="info">Icons and text auto-align. Sliders only change spacing &amp; the bracket size.</div>
 
     <div class="row">
+      <label>Text color</label>
+      <div style="flex:2;display:flex;gap:6px;align-items:center;">
+        <input type="color" id="f-tcolor" value="#a3a2a2" oninput="render()" style="width:40px;height:28px;border:1px solid #E5E2DC;border-radius:4px;padding:2px;cursor:pointer;">
+        <button type="button" onclick="document.getElementById('f-tcolor').value='#a3a2a2';render()" style="font-size:10px;padding:5px 8px;border:1px solid #E5E2DC;border-radius:4px;background:#fff;cursor:pointer;font-family:Montserrat,sans-serif;color:#666;">Light</button>
+        <button type="button" onclick="document.getElementById('f-tcolor').value='#545454';render()" style="font-size:10px;padding:5px 8px;border:1px solid #E5E2DC;border-radius:4px;background:#fff;cursor:pointer;font-family:Montserrat,sans-serif;color:#666;">Dark</button>
+      </div>
+      <span class="val" id="tcolor-val">#a3a2a2</span>
+    </div>
+    <div class="row">
       <label>Name letter-spacing</label>
       <input type="range" id="f-ntrack" min="-0.05" max="0.15" step="0.005" value="0" oninput="render()">
       <span class="val" id="ntrack-val">0.000em</span>
@@ -260,7 +269,7 @@ function measureNameWidth(name, ntr) {
   return w;
 }
 
-function buildSig(name, title, email, phone, tr, ntr, gp, cyv, col1W, bracketEl, emailIconEl, phoneIconEl) {
+function buildSig(name, title, email, phone, tr, ntr, tcolor, gp, cyv, col1W, bracketEl, emailIconEl, phoneIconEl) {
   const nameWidth = measureNameWidth(name, ntr);
   // Title is constrained to the name's width. If the title is longer, it wraps to a second line.
   return `<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,sans-serif;border-collapse:collapse;background:transparent;background-color:transparent;">
@@ -272,16 +281,16 @@ function buildSig(name, title, email, phone, tr, ntr, gp, cyv, col1W, bracketEl,
   </tr>
   <tr>
     <td style="vertical-align:top;line-height:1.25;padding-top:4px;padding-bottom:${cyv}px;padding-left:${gp}px;">
-      <div style="font-family:Montserrat,Arial,sans-serif;font-size:16px;font-weight:400;color:#a3a2a2;letter-spacing:${tr}em;line-height:1.25;max-width:${nameWidth}px;word-wrap:break-word;overflow-wrap:break-word;">${title}</div>
+      <div style="font-family:Montserrat,Arial,sans-serif;font-size:16px;font-weight:400;color:${tcolor};letter-spacing:${tr}em;line-height:1.25;max-width:${nameWidth}px;word-wrap:break-word;overflow-wrap:break-word;">${title}</div>
     </td>
   </tr>
   <tr>
     <td style="padding-left:${ICON_PAD_LEFT}px;vertical-align:middle;line-height:0;height:32px;width:${col1W}px;">${emailIconEl}</td>
-    <td style="font-family:Arial,sans-serif;font-size:15px;color:#a3a2a2;vertical-align:middle;line-height:${ICON_SIZE}px;height:32px;padding-left:${gp}px;"><a href="mailto:${email}" style="color:#a3a2a2;text-decoration:none;font-family:Arial,sans-serif;font-size:15px;">${email}</a></td>
+    <td style="font-family:Arial,sans-serif;font-size:15px;color:${tcolor};vertical-align:middle;line-height:${ICON_SIZE}px;height:32px;padding-left:${gp}px;"><a href="mailto:${email}" style="color:${tcolor};text-decoration:none;font-family:Arial,sans-serif;font-size:15px;">${email}</a></td>
   </tr>
   <tr>
     <td style="padding-left:${ICON_PAD_LEFT}px;vertical-align:middle;line-height:0;height:32px;width:${col1W}px;">${phoneIconEl}</td>
-    <td style="font-family:Arial,sans-serif;font-size:15px;color:#a3a2a2;vertical-align:middle;line-height:${ICON_SIZE}px;height:32px;padding-left:${gp}px;"><a href="tel:${phone.replace(/[^0-9+]/g,'')}" style="color:#a3a2a2;text-decoration:none;font-family:Arial,sans-serif;font-size:15px;">${phone}</a></td>
+    <td style="font-family:Arial,sans-serif;font-size:15px;color:${tcolor};vertical-align:middle;line-height:${ICON_SIZE}px;height:32px;padding-left:${gp}px;"><a href="tel:${phone.replace(/[^0-9+]/g,'')}" style="color:${tcolor};text-decoration:none;font-family:Arial,sans-serif;font-size:15px;">${phone}</a></td>
   </tr>
   <tr>
     <td colspan="2" style="padding-top:14px;line-height:0;">
@@ -299,6 +308,7 @@ function readInputs() {
     phone: document.getElementById('f-phone').value || '123-123-1234',
     tr: parseFloat(document.getElementById('f-track').value),
     ntr: parseFloat(document.getElementById('f-ntrack').value),
+    tcolor: document.getElementById('f-tcolor').value,
     bb: parseInt(document.getElementById('f-bbot').value),
     hl: parseInt(document.getElementById('f-hlen').value),
     gp: parseInt(document.getElementById('f-gap').value),
@@ -310,6 +320,7 @@ function render() {
   const v = readInputs();
   document.getElementById('track-val').textContent  = v.tr.toFixed(3) + 'em';
   document.getElementById('ntrack-val').textContent = v.ntr.toFixed(3) + 'em';
+  document.getElementById('tcolor-val').textContent = v.tcolor;
   document.getElementById('bbot-val').textContent   = v.bb + 'px';
   document.getElementById('hlen-val').textContent   = v.hl + 'px';
   document.getElementById('gap-val').textContent    = v.gp + 'px';
@@ -320,7 +331,7 @@ function render() {
   const { svg: emailIcon } = getEmailIconSvg();
   const { svg: phoneIcon } = getPhoneIconSvg();
 
-  const html = buildSig(v.name, v.title, v.email, v.phone, v.tr, v.ntr, v.gp, v.cy, col1W, bracket, emailIcon, phoneIcon);
+  const html = buildSig(v.name, v.title, v.email, v.phone, v.tr, v.ntr, v.tcolor, v.gp, v.cy, col1W, bracket, emailIcon, phoneIcon);
   document.getElementById('sig-preview').innerHTML = html;
 }
 
@@ -350,7 +361,7 @@ async function doCopy() {
     const phoneIconImg  = `<img src="${phoneIconPng}" width="${ICON_SIZE}" height="${ICON_SIZE}" alt="" style="display:block;border:0;">`;
 
     // Build PNG-based signature HTML
-    const html = buildSig(v.name, v.title, v.email, v.phone, v.tr, v.ntr, v.gp, v.cy, col1W, bracketImg, emailIconImg, phoneIconImg);
+    const html = buildSig(v.name, v.title, v.email, v.phone, v.tr, v.ntr, v.tcolor, v.gp, v.cy, col1W, bracketImg, emailIconImg, phoneIconImg);
 
     // Copy to clipboard as HTML
     try {
