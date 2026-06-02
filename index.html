@@ -155,15 +155,15 @@
 </div>
 
 <script>
-const ICON_SIZE = 21;
-const VLINE_X = 16;
+const ICON_SIZE = 19;
+const VLINE_X = 15;
 const ICON_PAD_LEFT = VLINE_X - ICON_SIZE/2;  // = 5.5
-const NAME_FONT_SIZE = 26;
+const NAME_FONT_SIZE = 24;
 const NAME_CENTER_Y = NAME_FONT_SIZE / 2;     // = 15
 const LOGO_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="84.81 48 426.14 98.24"><style>.cls-2{fill:#1e1e1e;}.cls-5{fill:#fcc70e;}</style><path class="cls-2" d="M278.63,107.62c-6.46,6.46-14.17,10.27-22.54,10.27-17.9,0-29.5-14.67-29.5-29.5,0-17.32,14.17-29.66,29.5-29.66,7.71,0,15.66,3.4,21.63,9.45l-8.04,8.12c-3.89-3.89-8.78-6.05-13.59-6.05-9.94,0-17.98,8.2-17.98,18.15s8.04,17.98,17.98,17.98c5.47,0,10.11-2.49,14.42-6.79l8.12,8.04Z"/><polygon class="cls-2" points="324.58 117.32 289.69 117.32 289.69 59.32 301.21 59.32 301.21 105.8 324.58 105.8 324.58 117.32"/><path class="cls-2" d="M329.78,88.4c0-15.58,12.59-29.66,29.58-29.66,15.25,0,29.58,12.35,29.58,29.66,0,15.33-12.35,29.5-29.58,29.5-14.83,0-29.58-11.6-29.58-29.5M341.3,88.4c0,9.94,8.2,17.98,18.06,17.98s17.98-8.12,17.98-17.98-8.2-18.15-17.98-18.15-18.06,8.12-18.06,18.15"/><path class="cls-2" d="M400.92,95.28v-35.96h11.43v34.47c0,7.79,5.22,12.59,11.02,12.59s11.02-4.81,11.02-12.59v-34.47h11.52v35.96c0,13.17-9.28,22.62-22.54,22.62s-22.45-9.45-22.45-22.62"/><path class="cls-2" d="M462.73,117.32v-58h20.13c17.15,0,28.09,11.93,28.09,29.08,0,16.24-10.94,28.92-28.09,28.92h-20.13ZM474.16,105.8h8.7c9.45,0,16.57-7.62,16.57-17.4s-7.04-17.48-16.57-17.48h-8.7v34.88Z"/><path class="cls-2" d="M246.33,133.79c-1.08,1.08-2.36,1.71-3.76,1.71-2.98,0-4.92-2.44-4.92-4.92,0-2.89,2.36-4.94,4.92-4.94,1.28,0,2.61.57,3.6,1.57l-1.34,1.35c-.65-.65-1.46-1.01-2.26-1.01-1.66,0-3,1.37-3,3.03s1.34,3,3,3c.91,0,1.68-.41,2.4-1.13l1.35,1.34Z"/><path class="cls-2" d="M251.17,130.58c0-2.6,2.1-4.94,4.93-4.94,2.54,0,4.93,2.06,4.93,4.94,0,2.56-2.06,4.92-4.93,4.92-2.47,0-4.93-1.93-4.93-4.92M253.09,130.58c0,1.66,1.37,3,3.01,3s3-1.35,3-3-1.37-3.02-3-3.02-3.01,1.35-3.01,3.02"/><polygon class="cls-2" points="277.6 125.64 277.6 135.4 275.7 135.4 275.7 129.16 272.22 132.62 268.75 129.16 268.75 135.4 266.83 135.4 266.83 125.64 267.89 125.64 272.22 129.94 276.56 125.64 277.6 125.64"/><path class="cls-2" d="M286.03,135.4h-1.92v-9.67h3.91c1.62,0,2.98,1.34,2.98,2.98s-1.35,3-2.98,3h-1.99v3.69ZM286.03,129.81h1.63c.97,0,1.42-.5,1.42-1.09s-.46-1.06-1.42-1.06h-1.63v2.15Z"/><path class="cls-2" d="M296.41,131.73v-5.99h1.91v5.75c0,1.3.87,2.1,1.84,2.1s1.84-.8,1.84-2.1v-5.75h1.92v5.99c0,2.2-1.55,3.77-3.76,3.77s-3.74-1.57-3.74-3.77"/><polygon class="cls-2" points="316.65 127.66 314 127.66 314 135.41 312.08 135.41 312.08 127.66 309.4 127.66 309.4 125.74 316.65 125.74 316.65 127.66"/><rect class="cls-2" x="322.2" y="125.74" width="1.91" height="9.67"/><polygon class="cls-2" points="330.32 125.64 331.16 125.64 336.39 131.44 336.39 125.74 338.29 125.74 338.29 135.5 337.44 135.5 332.23 129.71 332.23 135.4 330.32 135.4 330.32 125.64"/><path class="cls-2" d="M348.67,129.94h3.78v4.12c-1.04.92-2.15,1.45-3.51,1.45-2.98,0-4.92-2.43-4.92-4.92,0-3,2.43-4.94,4.92-4.94,1.3,0,2.58.55,3.59,1.56l-1.31,1.38c-.68-.65-1.49-1.02-2.28-1.02-1.66,0-3,1.35-3,3.02s1.34,3,3,3c.55,0,1.13-.17,1.6-.44v-1.29h-1.88v-1.92Z"/><path class="cls-2" d="M373.36,133.79c-1.08,1.08-2.36,1.71-3.76,1.71-2.98,0-4.92-2.44-4.92-4.92,0-2.89,2.36-4.94,4.92-4.94,1.28,0,2.61.57,3.61,1.57l-1.34,1.35c-.65-.65-1.46-1.01-2.27-1.01-1.66,0-3,1.37-3,3.03s1.34,3,3,3c.91,0,1.69-.41,2.4-1.13l1.35,1.34Z"/><path class="cls-2" d="M378.21,130.58c0-2.6,2.1-4.94,4.93-4.94,2.54,0,4.93,2.06,4.93,4.94,0,2.56-2.06,4.92-4.93,4.92-2.47,0-4.93-1.93-4.93-4.92M380.13,130.58c0,1.66,1.37,3,3.01,3s3-1.35,3-3-1.37-3.02-3-3.02-3.01,1.35-3.01,3.02"/><polygon class="cls-2" points="393.84 125.64 394.68 125.64 399.9 131.44 399.9 125.74 401.81 125.74 401.81 135.5 400.95 135.5 395.75 129.71 395.75 135.4 393.84 135.4 393.84 125.64"/><path class="cls-2" d="M408.35,134.81h.01c-.5-.3-.91-.75-1.06-.91l1.44-1.33c.26.33,1.22,1.01,1.96,1.01.62,0,1.34-.26,1.34-1.02,0-.3-.35-.69-1.69-1.22-1.56-.58-2.71-1.33-2.71-2.89s1.24-2.82,3.09-2.82c.99,0,2.32.55,2.96,1.1l-1.19,1.49s-.87-.68-1.7-.68c-.76,0-1.23.32-1.23.88,0,.52.68.82,1.45,1.09,2.22.83,2.94,1.7,2.94,3.04,0,1.63-1.38,2.93-3.27,2.93-.84,0-1.64-.25-2.35-.69"/><path class="cls-2" d="M419.57,131.73v-5.99h1.91v5.75c0,1.3.87,2.1,1.84,2.1s1.84-.8,1.84-2.1v-5.75h1.92v5.99c0,2.2-1.55,3.77-3.76,3.77s-3.74-1.57-3.74-3.77"/><polygon class="cls-2" points="439.11 135.4 433.29 135.4 433.29 125.74 435.21 125.74 435.21 133.49 439.11 133.49 439.11 135.4"/><polygon class="cls-2" points="449.38 127.66 446.73 127.66 446.73 135.41 444.81 135.41 444.81 127.66 442.13 127.66 442.13 125.74 449.38 125.74 449.38 127.66"/><path class="cls-2" d="M458.09,125.64l4.35,9.76h-2.11l-.79-1.77h-3.69c-.23.55-.55,1.24-.77,1.77h-2.1l4.3-9.76h.82ZM458.69,131.72l-.99-2.24-.99,2.24h1.99Z"/><polygon class="cls-2" points="467.65 125.64 468.49 125.64 473.71 131.44 473.71 125.74 475.62 125.74 475.62 135.5 474.76 135.5 469.55 129.71 469.55 135.4 467.65 135.4 467.65 125.64"/><polygon class="cls-2" points="488.53 127.66 485.87 127.66 485.87 135.41 483.95 135.41 483.95 127.66 481.28 127.66 481.28 125.74 488.53 125.74 488.53 127.66"/><path class="cls-2" d="M494.27,134.81h.01c-.5-.3-.91-.75-1.06-.91l1.44-1.33c.26.33,1.22,1.01,1.96,1.01.62,0,1.34-.26,1.34-1.02,0-.3-.35-.69-1.69-1.22-1.56-.58-2.71-1.33-2.71-2.89s1.24-2.82,3.09-2.82c.99,0,2.32.55,2.96,1.1l-1.19,1.49s-.87-.68-1.7-.68c-.76,0-1.23.32-1.23.88,0,.52.68.82,1.45,1.09,2.22.83,2.94,1.7,2.94,3.04,0,1.63-1.38,2.93-3.27,2.93-.84,0-1.64-.25-2.35-.69"/><path class="cls-5" d="M116.97,146.24c-17.73,0-32.16-14.43-32.16-32.16s14.43-32.16,32.16-32.16c9.21,0,17.99,3.96,24.09,10.86,2.55,2.89,2.28,7.29-.6,9.85-2.89,2.55-7.29,2.28-9.85-.6-3.46-3.91-8.43-6.15-13.64-6.15-10.04,0-18.2,8.17-18.2,18.2s8.17,18.2,18.2,18.2c5.21,0,10.18-2.24,13.64-6.15,2.55-2.89,6.96-3.16,9.85-.6,2.89,2.55,3.16,6.96.6,9.85-6.1,6.9-14.89,10.86-24.09,10.86"/><path class="cls-5" d="M191.4,146.24c-17.73,0-32.16-14.43-32.16-32.16s14.43-32.16,32.16-32.16c9.21,0,17.99,3.96,24.09,10.86,2.55,2.89,2.28,7.29-.6,9.85-2.89,2.55-7.3,2.28-9.85-.6-3.46-3.91-8.43-6.15-13.64-6.15-10.04,0-18.2,8.17-18.2,18.2s8.17,18.2,18.2,18.2c5.21,0,10.18-2.24,13.64-6.15,2.55-2.89,6.96-3.16,9.85-.6,2.89,2.55,3.16,6.96.6,9.85-6.1,6.9-14.89,10.86-24.09,10.86"/><path class="cls-5" d="M154.19,112.32c-17.73,0-32.16-14.43-32.16-32.16s14.43-32.16,32.16-32.16c9.21,0,17.99,3.96,24.09,10.86,2.55,2.89,2.28,7.29-.6,9.85-2.89,2.55-7.3,2.28-9.85-.6-3.46-3.91-8.43-6.15-13.64-6.15-10.04,0-18.2,8.17-18.2,18.2s8.17,18.2,18.2,18.2c5.21,0,10.18-2.24,13.64-6.15,2.55-2.89,6.96-3.16,9.85-.6,2.89,2.55,3.16,6.96.6,9.85-6.1,6.9-14.89,10.86-24.09,10.86"/></svg>';
 const LOGO_SVG_URL = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(LOGO_SVG)));
-const LOGO_WIDTH = 175;
-const LOGO_HEIGHT = 40;
+const LOGO_WIDTH = 160;
+const LOGO_HEIGHT = 37;
 
 function getBracketSvg(bb, hl) {
   const col1W = Math.max(ICON_PAD_LEFT + ICON_SIZE, VLINE_X + hl);
@@ -239,19 +239,19 @@ function buildSig(name, title, email, phone, tr, ntr, gp, cyv, col1W, bracketEl,
   </tr>
   <tr>
     <td style="vertical-align:top;line-height:1.25;padding-top:3px;padding-bottom:${cyv}px;padding-left:${gp}px;">
-      <div style="font-family:Inter,Arial,sans-serif;font-size:14px;font-weight:400;color:#545454;letter-spacing:${tr}em;line-height:1.25;max-width:${nameWidth}px;word-wrap:break-word;overflow-wrap:break-word;">${title}</div>
+      <div style="font-family:Inter,Arial,sans-serif;font-size:13px;font-weight:400;color:#545454;letter-spacing:${tr}em;line-height:1.25;max-width:${nameWidth}px;word-wrap:break-word;overflow-wrap:break-word;">${title}</div>
     </td>
   </tr>
   <tr>
-    <td style="padding-left:${ICON_PAD_LEFT}px;vertical-align:middle;line-height:0;height:28px;width:${col1W}px;">${emailIconEl}</td>
-    <td style="font-family:Arial,sans-serif;font-size:13px;color:#545454;vertical-align:middle;line-height:${ICON_SIZE}px;height:28px;padding-left:${gp}px;"><a href="mailto:${email}" style="color:#545454;text-decoration:none;font-family:Arial,sans-serif;font-size:13px;">${email}</a></td>
+    <td style="padding-left:${ICON_PAD_LEFT}px;vertical-align:middle;line-height:0;height:26px;width:${col1W}px;">${emailIconEl}</td>
+    <td style="font-family:Arial,sans-serif;font-size:12px;color:#545454;vertical-align:middle;line-height:${ICON_SIZE}px;height:26px;padding-left:${gp}px;"><a href="mailto:${email}" style="color:#545454;text-decoration:none;font-family:Arial,sans-serif;font-size:12px;">${email}</a></td>
   </tr>
   <tr>
-    <td style="padding-left:${ICON_PAD_LEFT}px;vertical-align:middle;line-height:0;height:28px;width:${col1W}px;">${phoneIconEl}</td>
-    <td style="font-family:Arial,sans-serif;font-size:13px;color:#545454;vertical-align:middle;line-height:${ICON_SIZE}px;height:28px;padding-left:${gp}px;"><a href="tel:${phone.replace(/[^0-9+]/g,'')}" style="color:#545454;text-decoration:none;font-family:Arial,sans-serif;font-size:13px;">${phone}</a></td>
+    <td style="padding-left:${ICON_PAD_LEFT}px;vertical-align:middle;line-height:0;height:26px;width:${col1W}px;">${phoneIconEl}</td>
+    <td style="font-family:Arial,sans-serif;font-size:12px;color:#545454;vertical-align:middle;line-height:${ICON_SIZE}px;height:26px;padding-left:${gp}px;"><a href="tel:${phone.replace(/[^0-9+]/g,'')}" style="color:#545454;text-decoration:none;font-family:Arial,sans-serif;font-size:12px;">${phone}</a></td>
   </tr>
   <tr>
-    <td colspan="2" style="padding-top:12px;line-height:0;">
+    <td colspan="2" style="padding-top:11px;line-height:0;">
       <img src="${logoUrl}" alt="Cloud Computing Consultants" width="${LOGO_WIDTH}" height="${LOGO_HEIGHT}" style="display:block;border:0;">
     </td>
   </tr>
@@ -262,10 +262,10 @@ function buildSig(name, title, email, phone, tr, ntr, gp, cyv, col1W, bracketEl,
 const LOCKED = {
   tr:  0.080,   // Title letter-spacing
   ntr: 0.080,   // Name letter-spacing
-  bb:  64,      // Bracket vertical length
-  hl:  10,      // Bracket horizontal length
-  gp:  12,      // Gap between bracket and text
-  cy:  12,      // Gap between title and email row
+  bb:  58,      // Bracket vertical length
+  hl:  9,       // Bracket horizontal length
+  gp:  11,      // Gap between bracket and text
+  cy:  11,      // Gap between title and email row
 };
 
 function readInputs() {
